@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="noscrypto",
-    version="0.1.0",
+    version="0.1.2",
     description="A reverse engineered packet cryptography - encryption and decryption routines to emulate NosTale client or server",
     long_description=README,
     long_description_content_type="text/markdown",
