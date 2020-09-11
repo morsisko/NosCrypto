@@ -2,7 +2,7 @@
 A reverse engineered packet cryptography - encryption and decryption routines to emulate NosTale client or server.
 
 # Abstract
-The goal of this project is to recreate an algorithm that is used to encrypt/decrypt net packets that are exchanged between NosTale client and server. I've seen many public cryptos but I think none of them were producing extact the same output as real client or server (especially when it comes to special characters like `ąśżź` etc). The problem of majority of those libraries is incorrect mask generation algorithm. If you ever encounter output produced by this library that is different from the original produced by game client or server, please report it immediately.
+The goal of this project is to recreate an algorithm that is used to encrypt/decrypt net packets that are exchanged between NosTale client and server. I've seen many public cryptos but I think none of them were producing exactly the same output as real client or server (especially when it comes to special characters like `ąśżź` etc). The problem of a majority of those libraries is an incorrect mask generation algorithm. If you ever encounter output produced by this library that is different from the original produced by game client or server, please report it immediately.
 
 # Installation 
 Please use pypi to install this library:
@@ -13,7 +13,7 @@ Please use pypi to install this library:
 Unit tests are available under `noscrypto/tests`
 
 # Usage
-All the functions accept `bytes` as input and return `bytes` as output. Keep in mind that each function should accept and output only single packet. It is extremally important when you are for example decrypting world packets as client, because sometime the server sends multiple packets in one call (they are splited by 0xFF, and you should decrypt the packets chunk by chunk) 
+All the functions accept `bytes` as input and return `bytes` as output. Keep in mind that each function should accept and output only single packet. It is extremely important when you are, for example decrypting world packets as a client, because sometime the server sends multiple packets in one call (they are splited by 0xFF, and you should decrypt the packets chunk by chunk) 
 
 ## Client
 Functions can be imported like
