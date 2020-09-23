@@ -24,8 +24,7 @@ def LoginDecrypt(packet):
         
     return bytes(output)
     
-def WorldEncrypt(packet, session, is_first_packet = False):
-    packed = Utils._Pack(packet, _ENCRYPTION_TABLE)
+def _WorldXor(packet, session, is_first_packet = False):
     output = []
     
     if not is_first_packet:
@@ -35,8 +34,7 @@ def WorldEncrypt(packet, session, is_first_packet = False):
     
     key = session & 0xFF
     
-    
-    for i in packed:
+    for i in packet:
         if stype == 0:
             output.append((i + key + 0x40) & 0xFF)
             
@@ -53,6 +51,10 @@ def WorldEncrypt(packet, session, is_first_packet = False):
             output.append((i + 0xF) & 0xFF)
             
     return bytes(output)
+    
+def WorldEncrypt(packet, session, is_first_packet = False):
+    packed = Utils._Pack(packet, _ENCRYPTION_TABLE)
+    return _WorldXor(packed, session, is_first_packet)
     
 def WorldDecrypt(packet):
     return Utils._Unpack(packet, _DECRYPTION_TABLE)
