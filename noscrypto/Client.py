@@ -58,3 +58,13 @@ def WorldEncrypt(packet, session, is_first_packet = False):
     
 def WorldDecrypt(packet):
     return Utils._Unpack(packet, _DECRYPTION_TABLE)
+
+def WorldDecryptList(packets_raw, encoding="ascii"):
+    out = []
+    for this_packet in packets_raw.split(b'\xff'):
+        if this_packet == b'':
+            break
+        else:
+            this_packet+=b'\xff' # add missing \xff
+        out.append(Utils._Unpack(this_packet, _DECRYPTION_TABLE).decode(encoding))
+    return out
